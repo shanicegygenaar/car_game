@@ -1,42 +1,38 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
+const path = require('path')
+
 const config = {
-    target:'web',
-    entry:'./client/index.js',
-    watch:true,
-    output: {
-        path: path.resolve(_dirname, 'dist/client'),
-        filename:'index.js'
-    },
-    module:{
-        loaders: [
-
-        
-
-        {
-test:/\.js?$/,
-exclude:/node_module/,
-loadr:'babel-loader',
-options: {
-    presets:['env']
-}
+  target: 'web',
+  entry: './client/index.js',
+  watch: true,
+  output: {
+    path: path.resolve(__dirname, 'dist/client'),
+    filename: 'index.js'
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['env']
         }
-    
-        ]
-},
-plugins:[
+      }
+    ]
+  },
+  plugins: [
     new webpack.optimize.UglifyJsPlugin({
-        compress:{
-            warnings:false
-        },
-        output: {
-            comments:false
-        }
+      compress: {
+        warnings: false
+      },
+      output: {
+        comments: false
+      }
     }),
-new HtmlWebpackPlugin({
-    template:'.client/index.html'
-})
-]
+    new HtmlWebpackPlugin({ template: './client/index.html' })
+  ]
 }
+
 module.exports = config
